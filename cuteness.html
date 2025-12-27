@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuteness Meter 💖</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffe6f0, #ffd1dc);
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  overflow: hidden;
+}
+
+img {
+  width: 150px;
+  max-width: 50%;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+h1 {
+  color: #ff0066;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* Meter */
+.meter {
+  width: 80%;
+  max-width: 300px;
+  height: 25px;
+  background: #ffcce0;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg,#ff0066,#ff4d88);
+  border-radius: 20px;
+  text-align: right;
+  line-height: 25px;
+  color: white;
+  font-weight: bold;
+  padding-right: 5px;
+}
+
+/* Warning */
+.warning {
+  font-size: 18px;
+  color: #e60073;
+  display: none;
+  margin-bottom: 20px;
+}
+
+/* Button */
+button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  background: #ff4d88;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Cute Cat">
+
+<h1>Hey Beautiful 😘</h1>
+<p>Measuring your cuteness...</p>
+
+<div class="meter">
+  <div class="progress" id="progress">0%</div>
+</div>
+
+<div class="warning" id="warn">
+⚠️ Warning: Cuteness Overloaded 💖
+</div>
+
+<button id="nextBtn" onclick="alert('Next surprise coming 💕')">
+  Continue 💌
+</button>
+
+<script>
+let progress = document.getElementById("progress");
+let warning = document.getElementById("warn");
+let btn = document.getElementById("nextBtn");
+let width = 0;
+
+let interval = setInterval(() => {
+  if(width >= 120){  // goes above 100%
+    clearInterval(interval);
+    warning.style.display = "block";
+    btn.style.display = "inline-block";
+  } else {
+    width++;
+    progress.style.width = width + "%";
+    progress.innerText = width + "%";
+  }
+}, 40);
+</script>
+
+</body>
+</html>
