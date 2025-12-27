@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Anniversary 💖</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffd1dc, #ffe6f0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.container {
+  text-align: center;
+}
+
+.gift {
+  width: 180px;
+  height: 180px;
+  background: #ff4d6d;
+  border-radius: 20px;
+  position: relative;
+  margin: auto;
+  cursor: pointer;
+  animation: pulse 1.5s infinite;
+}
+
+.gift::before {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 180px;
+  background: #fff;
+  left: 75px;
+}
+
+.gift::after {
+  content: '';
+  position: absolute;
+  width: 180px;
+  height: 30px;
+  background: #fff;
+  top: 75px;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+h1 {
+  color: #d6336c;
+  margin-top: 30px;
+}
+
+p {
+  color: #555;
+  font-size: 18px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <div class="gift" onclick="openGift()"></div>
+  <h1>Open Me 🎁</h1>
+  <p>A surprise is waiting…</p>
+</div>
+
+<script>
+function openGift() {
+  document.body.innerHTML = `
+    <div style="
+      height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#ffb3c6,#ffe6f0);
+      font-family:Segoe UI;
+      text-align:center;
+    ">
+      <h1 style="color:#d6336c;font-size:36px;">
+        Happy Anniversary 💖
+      </h1>
+      <h2 style="color:#ff4d6d;">
+        Dear Vichuve 🌸
+      </h2>
+      <button onclick="location.href='page2.html'" style="
+        margin-top:30px;
+        padding:15px 30px;
+        font-size:18px;
+        border:none;
+        border-radius:30px;
+        background:#ff4d6d;
+        color:white;
+        cursor:pointer;
+      ">
+        Click Me 💕
+      </button>
+    </div>
+  `;
+}
+</script>
+</body>
+</html>
