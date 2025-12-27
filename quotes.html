@@ -52,7 +52,6 @@ button:hover {
   text-align: center;
 }
 
-/* Continue button */
 #continueBtn {
   display: none;
   padding: 12px 25px;
@@ -75,80 +74,45 @@ button:hover {
 <h1>💌 Open Your Love Quotes 💌</h1>
 
 <div>
-  <button onclick="revealQuote(1)">Open Quote 1 💌</button>
+  <button id="btn1">Open Quote 1 💌</button>
   <div class="quote" id="quote1">💌 You are my sunshine on the cloudiest days 💌</div>
 
-  <button onclick="revealQuote(2)">Open Quote 2 💌</button>
+  <button id="btn2">Open Quote 2 💌</button>
   <div class="quote" id="quote2">💌 Every heartbeat whispers your name 💌</div>
 
-  <button onclick="revealQuote(3)">Open Quote 3 💌</button>
+  <button id="btn3">Open Quote 3 💌</button>
   <div class="quote" id="quote3">💌 Your smile is my favorite treasure 💌</div>
 
-  <button onclick="revealQuote(4)">Open Quote 4 💌</button>
+  <button id="btn4">Open Quote 4 💌</button>
   <div class="quote" id="quote4">💌 With you, every moment feels magical 💌</div>
 
-  <button onclick="revealQuote(5)">Open Quote 5 💌</button>
+  <button id="btn5">Open Quote 5 💌</button>
   <div class="quote" id="quote5">💌 Vichuve, you are the greatest gem I’ve ever received in my life 💌</div>
 </div>
 
-<button id="continueBtn" onclick="goNext()">Continue to Letter 💌</button>
+<button id="continueBtn" onclick="window.location.href='letter.html'">Continue to Letter 💌</button>
 
 <script>
 let openedQuotes = 0;
 
-function revealQuote(num){
-  const q = document.getElementById('quote'+num);
-  if(q.style.display === 'none'){
-    q.style.display = 'block';
+function revealQuote(quoteId){
+  const q = document.getElementById(quoteId);
+  if(q.style.display === "none"){
+    q.style.display = "block";
     openedQuotes++;
 
-    // Optional: floating heart animation
+    // Optional: floating heart
     const heart = document.createElement('div');
     heart.innerHTML = "💌";
     heart.style.position = "absolute";
-    heart.style.left = (Math.random()*70+15) + "%";
-    heart.style.bottom<div>
-  <button onclick="revealQuote(1)">Open Quote 1</button>
-  <div class="quote" id="quote1">You are my sunshine on the cloudiest days ☀️</div>
-
-  <button onclick="revealQuote(2)">Open Quote 2</button>
-  <div class="quote" id="quote2">Every heartbeat whispers your name ❤️</div>
-
-  <button onclick="revealQuote(3)">Open Quote 3</button>
-  <div class="quote" id="quote3">Your smile is my favorite treasure 🌸</div>
-
-  <button onclick="revealQuote(4)">Open Quote 4</button>
-  <div class="quote" id="quote4">With you, every moment feels magical ✨</div>
-
-  <button onclick="revealQuote(5)">Open Quote 5</button>
-  <div class="quote" id="quote5">Vichuve, you are the greatest gem I’ve ever received in my life 💖</div>
-</div>
-
-function goNext(){
-  window.location.href = 'letter.html'; // this links to your handwritten letter
-}
-
-<script>
-let openedQuotes = 0;
-
-function revealQuote(num){
-  const q = document.getElementById('quote'+num);
-  if(q.style.display === 'none'){
-    q.style.display = 'block';
-    openedQuotes++;
-
-    // Optional: little floating heart animation
-    const heart = document.createElement('div');
-    heart.innerHTML = "💖";
-    heart.style.position = "absolute";
-    heart.style.left = (Math.random()*70+15) + "%";
+    heart.style.left = (Math.random()*70 + 15) + "%";
     heart.style.bottom = "50px";
-    heart.style.fontSize = (20+Math.random()*20)+"px";
+    heart.style.fontSize = (20 + Math.random()*20) + "px";
     heart.style.opacity = 0.8;
     document.body.appendChild(heart);
 
     let bottom = 50;
-    let interval = setInterval(()=>{
+    const interval = setInterval(() => {
       bottom += 2;
       heart.style.bottom = bottom + "px";
       heart.style.opacity -= 0.02;
@@ -158,15 +122,18 @@ function revealQuote(num){
       }
     }, 20);
   }
-  
+
   if(openedQuotes === 5){
-    document.getElementById('continueBtn').style.display = 'inline-block';
+    document.getElementById('continueBtn').style.display = "inline-block";
   }
 }
 
-function goNext(){
-  window.location.href = 'letter.html'; // next handwritten letter page
-}
+// Attach click events properly
+document.getElementById('btn1').addEventListener('click', () => revealQuote('quote1'));
+document.getElementById('btn2').addEventListener('click', () => revealQuote('quote2'));
+document.getElementById('btn3').addEventListener('click', () => revealQuote('quote3'));
+document.getElementById('btn4').addEventListener('click', () => revealQuote('quote4'));
+document.getElementById('btn5').addEventListener('click', () => revealQuote('quote5'));
 </script>
 
 </body>
