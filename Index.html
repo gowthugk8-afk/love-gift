@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #ffd6e8, #fff0f6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.container{
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  padding: 20px;
+}
+
+.gift{
+  width: 200px;
+  margin: auto;
+  cursor: pointer;
+}
+
+.gift img{
+  width: 100%;
+}
+
+.open-text{
+  margin-top: 15px;
+  font-size: 5vw;
+  color: #ff4d88;
+}
+
+.message{
+  display: none;
+  margin-top: 20px;
+}
+
+.message h1{
+  font-size: 7vw;
+  color: #e60073;
+  margin-bottom: 10px;
+}
+
+.message p{
+  font-size: 5vw;
+  color: #555;
+}
+
+button{
+  margin-top: 20px;
+  padding: 14px 30px;
+  font-size: 5vw;
+  border: none;
+  border-radius: 30px;
+  background: #ff4d88;
+  color: white;
+  cursor: pointer;
+}
+
+button:active{
+  transform: scale(0.96);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="gift" onclick="openGift()">
+    <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Gift box">
+  </div>
+
+  <div class="open-text" id="openText">
+    Open me 💝
+  </div>
+
+  <div class="message" id="message">
+    <h1>Happy Anniversary ❤️</h1>
+    <p>My dear Vichuve 💖</p>
+
+    <button onclick="goNext()">Click Me ✨</button>
+  </div>
+
+</div>
+
+<script>
+function openGift(){
+  document.getElementById("openText").style.display = "none";
+  document.getElementById("message").style.display = "block";
+}
+
+function goNext(){
+  window.location.href = "cuteness.html";
+}
+</script>
+
+</body>
+</html>
