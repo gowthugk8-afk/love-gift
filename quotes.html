@@ -3,137 +3,181 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Love Quotes 💖</title>
+<title>Our Story</title>
 
 <style>
 body {
   margin: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg,#ffe6f0,#ffd1dc);
-  font-family: 'Segoe UI', sans-serif;
-  text-align: center;
+  font-family: Georgia, serif;
+  background: #f6f2eb;
   overflow: hidden;
 }
 
-h1 {
-  font-size: 28px;
-  color: #ff0066;
-  margin-bottom: 20px;
+.book {
+  display: flex;
+  width: 200vw;
+  height: 100vh;
+  transition: transform 0.4s ease;
 }
 
-button {
-  padding: 12px 20px;
-  margin: 10px;
-  font-size: 16px;
-  border-radius: 25px;
-  border: none;
-  background: #ff4d88;
-  color: white;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-button:hover {
-  background: #e6396a;
-  transform: scale(1.05);
-}
-
-.quote {
-  display: none;
-  font-size: 18px;
-  color: #c9184a;
-  margin: 10px 0 20px 0;
-  max-width: 90%;
-  line-height: 1.6;
+/* COMMON PAGE STYLE */
+.page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   text-align: center;
+  padding: 20px;
 }
 
-#continueBtn {
-  display: none;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 30px;
-  background: #ff4d88;
-  color: white;
+/* PAGE 1 */
+.line {
+  width: 160px;
+  height: 1px;
+  background: black;
+  margin: 8px auto;
+}
+
+.title {
+  font-size: 36px;
+}
+
+.letter {
+  display: inline-block;
+  transition: transform 0.15s ease;
+}
+
+.letter:active {
+  transform: scale(1.4);
+}
+
+.roman-two {
+  font-size: 26px;
+  margin: 10px 0;
+}
+
+.date {
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+}
+
+/* BUTTON */
+button {
+  padding: 14px 26px;
   font-size: 16px;
-  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background: black;
+  color: white;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-#continueBtn:hover {
-  background: #e6396a;
+button:active {
+  transform: scale(1.15);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* HEART POP */
+.heart {
+  position: absolute;
+  font-size: 20px;
+  animation: pop 0.6s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes pop {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(2) translateY(-40px); opacity: 0; }
+}
+
+/* PAGE 2 */
+.message {
+  max-width: 600px;
+  font-size: 18px;
+  line-height: 1.6;
 }
 </style>
 </head>
 
 <body>
 
-<h1>💌 Open Your Love Quotes 💌</h1>
+<div class="book" id="book">
 
-<div>
-  <button id="btn1">Open Quote 1 💌</button>
-  <div class="quote" id="quote1">💌 You are my sunshine on the cloudiest days 💌</div>
+<!-- PAGE 1 -->
+<div class="page">
+  <div class="line"></div>
 
-  <button id="btn2">Open Quote 2 💌</button>
-  <div class="quote" id="quote2">💌 Every heartbeat whispers your name 💌</div>
+  <div class="title">
+    <span class="letter">O</span>
+    <span class="letter">u</span>
+    <span class="letter">r</span>
+    <span class="letter">&nbsp;</span>
+    <span class="letter">S</span>
+    <span class="letter">t</span>
+    <span class="letter">o</span>
+    <span class="letter">r</span>
+    <span class="letter">y</span>
+  </div>
 
-  <button id="btn3">Open Quote 3 💌</button>
-  <div class="quote" id="quote3">💌 Your smile is my favorite treasure 💌</div>
+  <div class="line"></div>
 
-  <button id="btn4">Open Quote 4 💌</button>
-  <div class="quote" id="quote4">💌 With you, every moment feels magical 💌</div>
+  <div class="roman-two">Ⅱ</div>
+  <div class="date">III • I • MMXXVI</div>
 
-  <button id="btn5">Open Quote 5 💌</button>
-  <div class="quote" id="quote5">💌 Vichuve, you are the greatest gem I’ve ever received in my life 💌</div>
+  <button onclick="nextPage()">Next Page →</button>
 </div>
 
-<button id="continueBtn" onclick="window.location.href='letter.html'">Continue to Letter 💌</button>
+<!-- PAGE 2 -->
+<div class="page">
+  <div class="message">
+    When we are together, we become like children—laughing, playing, and enjoying the smallest moments.
+    In those times, it feels like it’s just us, caring only about each other and not about the rest of the world.
+    That freedom to be ourselves is what makes our bond so special.
+    And when life asks us to be serious, we stand strong together.
+    But when we want to laugh, play, and feel that childlike joy again, we do it together—and that is the beauty of our love.
+  </div>
+
+  <button onclick="prevPage()">← Back</button>
+</div>
+
+</div>
 
 <script>
-let openedQuotes = 0;
+let currentPage = 0;
+const book = document.getElementById("book");
 
-function revealQuote(quoteId){
-  const q = document.getElementById(quoteId);
-  if(q.style.display === "none"){
-    q.style.display = "block";
-    openedQuotes++;
-
-    // Optional: floating heart
-    const heart = document.createElement('div');
-    heart.innerHTML = "💌";
-    heart.style.position = "absolute";
-    heart.style.left = (Math.random()*70 + 15) + "%";
-    heart.style.bottom = "50px";
-    heart.style.fontSize = (20 + Math.random()*20) + "px";
-    heart.style.opacity = 0.8;
-    document.body.appendChild(heart);
-
-    let bottom = 50;
-    const interval = setInterval(() => {
-      bottom += 2;
-      heart.style.bottom = bottom + "px";
-      heart.style.opacity -= 0.02;
-      if(bottom > window.innerHeight){
-        clearInterval(interval);
-        heart.remove();
-      }
-    }, 20);
-  }
-
-  if(openedQuotes === 5){
-    document.getElementById('continueBtn').style.display = "inline-block";
-  }
+/* PAGE NAVIGATION */
+function nextPage() {
+  currentPage = 1;
+  book.style.transform = "translateX(-100vw)";
 }
 
-// Attach click events properly
-document.getElementById('btn1').addEventListener('click', () => revealQuote('quote1'));
-document.getElementById('btn2').addEventListener('click', () => revealQuote('quote2'));
-document.getElementById('btn3').addEventListener('click', () => revealQuote('quote3'));
-document.getElementById('btn4').addEventListener('click', () => revealQuote('quote4'));
-document.getElementById('btn5').addEventListener('click', () => revealQuote('quote5'));
+function prevPage() {
+  currentPage = 0;
+  book.style.transform = "translateX(0)";
+}
+
+/* SWIPE SUPPORT */
+let startX = 0;
+document.addEventListener("touchstart", e => startX = e.touches[0].clientX);
+document.addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+  if (startX - endX > 50) nextPage();
+  if (endX - startX > 50) prevPage();
+});
+
+/* HEART POP ON TOUCH */
+document.addEventListener("click", e => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤";
+  heart.style.left = e.clientX + "px";
+  heart.style.top = e.clientY + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 600);
+});
 </script>
 
 </body>
