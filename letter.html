@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Letter to Vichuve 💌</title>
+
+<style>
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg,#ffe6f0,#ffd1dc);
+  font-family: 'Dancing Script', cursive;
+  text-align: center;
+  overflow: hidden;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+.container {
+  background: rgba(255,255,255,0.9);
+  padding: 25px 20px;
+  border-radius: 25px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  max-width: 90%;
+  position: relative;
+}
+
+h1 {
+  font-size: 28px;
+  color: #ff0066;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 20px;
+  color: #c9184a;
+  line-height: 1.6;
+  display: inline-block;
+  text-align: left;
+  white-space: pre-wrap;
+  max-width: 100%;
+}
+
+/* Handwriting animation */
+@keyframes type {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+#letterText {
+  border-right: 2px solid #c9184a;
+  white-space: pre-wrap;
+  overflow: hidden;
+  display: inline-block;
+  animation: type 8s steps(100) forwards;
+}
+
+/* Continue button */
+button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  background: #ff4d88;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  display: none;
+}
+
+button:hover {
+  background: #e6396a;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>💌 A Letter for Vichuve 💌</h1>
+  <p id="letterText">
+My Dearest Vichuve,  
+
+From the very first day my heart quietly found yours, something beautiful began.  
+Every moment with you has been magical, warm, and unforgettable.  
+You are my laughter, my joy, my everything.  
+
+No matter where life takes us, remember — you will always be special to me. 💖
+  </p>
+
+  <button id="nextBtn" onclick="alert('More surprises coming! 💕')">💝 You’re Always Special 💝</button>
+</div>
+
+<script>
+const letter = document.getElementById('letterText');
+const btn = document.getElementById('nextBtn');
+
+// Show button after typing animation ends
+letter.addEventListener('animationend', () => {
+  btn.style.display = 'inline-block';
+});
+</script>
+
+</body>
+</html>
