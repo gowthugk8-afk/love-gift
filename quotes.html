@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Quotes 💖</title>
+
+<style>
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg,#ffe6f0,#ffd1dc);
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  overflow: hidden;
+}
+
+button {
+  padding: 12px 20px;
+  margin: 10px;
+  font-size: 16px;
+  border-radius: 25px;
+  border: none;
+  background: #ff4d88;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  background: #e6396a;
+  transform: scale(1.05);
+}
+
+.quote {
+  display: none;
+  font-size: 18px;
+  color: #c9184a;
+  margin-top: 10px;
+  max-width: 80%;
+  position: relative;
+  z-index: 1;
+}
+
+#continueBtn {
+  margin-top: 25px;
+  display: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: none;
+  background: #ff4d88;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<h1>💌 Open Your Love Quotes 💌</h1>
+
+<div>
+  <button onclick="revealQuote(1)">Open Quote 1</button>
+  <div class="quote" id="quote1">You are my sunshine on the cloudiest days ☀️</div>
+
+  <button onclick="revealQuote(2)">Open Quote 2</button>
+  <div class="quote" id="quote2">Every heartbeat whispers your name ❤️</div>
+
+  <button onclick="revealQuote(3)">Open Quote 3</button>
+  <div class="quote" id="quote3">Your smile is my favorite treasure 🌸</div>
+
+  <button onclick="revealQuote(4)">Open Quote 4</button>
+  <div class="quote" id="quote4">With you, every moment feels magical ✨</div>
+
+  <button onclick="revealQuote(5)">Open Quote 5</button>
+  <div class="quote" id="quote5">Vichuve, you are the greatest gem I’ve ever received in my life 💖</div>
+</div>
+
+<button id="continueBtn" onclick="goNext()">Continue to Letter 💌</button>
+
+<script>
+let openedQuotes = 0;
+
+function revealQuote(num){
+  const q = document.getElementById('quote'+num);
+  if(q.style.display === 'none'){
+    q.style.display = 'block';
+    openedQuotes++;
+
+    // Optional: little floating heart animation
+    const heart = document.createElement('div');
+    heart.innerHTML = "💖";
+    heart.style.position = "absolute";
+    heart.style.left = (Math.random()*70+15) + "%";
+    heart.style.bottom = "50px";
+    heart.style.fontSize = (20+Math.random()*20)+"px";
+    heart.style.opacity = 0.8;
+    document.body.appendChild(heart);
+
+    let bottom = 50;
+    let interval = setInterval(()=>{
+      bottom += 2;
+      heart.style.bottom = bottom + "px";
+      heart.style.opacity -= 0.02;
+      if(bottom > window.innerHeight){
+        clearInterval(interval);
+        heart.remove();
+      }
+    }, 20);
+  }
+  
+  if(openedQuotes === 5){
+    document.getElementById('continueBtn').style.display = 'inline-block';
+  }
+}
+
+function goNext(){
+  window.location.href = 'letter.html'; // next handwritten letter page
+}
+</script>
+
+</body>
+</html>
