@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -8,8 +8,8 @@
 <style>
 body {
   margin: 0;
-  background: linear-gradient(180deg, #f6f2eb, #fdeff2);
   font-family: Georgia, serif;
+  background: linear-gradient(180deg,#fff0f5,#fdeff2);
   overflow-x: hidden;
 }
 
@@ -17,15 +17,13 @@ body {
 .heart {
   position: fixed;
   top: -10px;
-  color: rgba(255, 0, 80, 0.4);
+  color: rgba(255,0,80,0.4);
   font-size: 18px;
   animation: fall linear infinite;
+  z-index: 0;
 }
-
 @keyframes fall {
-  to {
-    transform: translateY(110vh);
-  }
+  to { transform: translateY(110vh); }
 }
 
 /* SECTIONS */
@@ -37,42 +35,14 @@ section {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-/* TITLE */
-.title {
-  font-size: 36px;
-  letter-spacing: 2px;
-}
-
-.line {
-  width: 120px;
-  height: 2px;
-  background: black;
-  margin: 10px 0;
-}
-
-.roman {
-  font-size: 22px;
-}
-
-.date {
-  letter-spacing: 4px;
-  margin-bottom: 30px;
-}
-
-/* STORY */
-.story {
-  max-width: 700px;
-  font-family: "Comic Sans MS", "Bradley Hand", cursive;
-  font-size: 18px;
-  line-height: 1.8;
-  white-space: pre-wrap;
+  text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 /* BUTTON */
 button {
-  margin-top: 40px;
+  margin-top: 30px;
   padding: 14px 30px;
   font-size: 16px;
   border: none;
@@ -82,43 +52,94 @@ button {
   cursor: pointer;
 }
 
-/* BEARS */
-.bears {
-  font-size: 80px;
-  animation: dance 1s infinite alternate;
+/* GIFT */
+.gift {
+  font-size: 100px;
+  cursor: pointer;
+}
+.hidden { display: none; }
+
+/* STORY */
+.story {
+  max-width: 700px;
+  text-align: left;
+  font-family: "Comic Sans MS", "Bradley Hand", cursive;
+  font-size: 18px;
+  line-height: 1.8;
+  white-space: pre-wrap;
 }
 
+/* DANCING TEDDIES */
+.bears {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dancing-teddy {
+  width: 80px;
+  height: 80px;
+  margin: 0 10px;
+  animation: dance 1s infinite alternate;
+}
 @keyframes dance {
   from { transform: rotate(-5deg) translateY(0); }
   to { transform: rotate(5deg) translateY(-10px); }
-}
-
-.love-text {
-  margin-top: 20px;
-  font-size: 22px;
-  letter-spacing: 1px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- STORY SECTION -->
-<section id="storyPage">
-  <div class="title">Our Story</div>
-  <div class="line"></div>
-  <div class="roman">II</div>
-  <div class="date">III · I · MMXXVI</div>
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
+<!-- SECTION 1: GIFT BOX -->
+<section>
+  <div class="gift" onclick="openGift()">🎁</div>
+  <h1 id="giftText" class="hidden">Happy Anniversary Vichuve ❤️</h1>
+  <button id="giftBtn" class="hidden" onclick="scrollNext()">Continue 💕</button>
+</section>
+
+<!-- SECTION 2: ANNIVERSARY WISH -->
+<section>
+  <h1>Happy Anniversary ❤️</h1>
+  <p style="max-width:600px; font-size:18px;">
+    Two beautiful years together, filled with love, laughter,
+    little fights, and countless memories.
+    We’re grateful for us, for our bond, and for every moment we share.
+  </p>
+  <button onclick="scrollNext()">Next ➜</button>
+</section>
+
+<!-- SECTION 3: MEASURING CUTENESS -->
+<section>
+  <h2>Measuring Your Cuteness 🧸</h2>
+  <p style="font-size:18px;">Calculating…</p>
+  <div style="font-size:40px;">❤️ ❤️ ❤️ ❤️ ❤️</div>
+  <p style="font-size:20px;">Result: Beyond Measurement 💖</p>
+  <button onclick="scrollNext()">Next ➜</button>
+</section>
+
+<!-- SECTION 4: HANDWRITTEN STORY -->
+<section>
+  <h1>Our Story</h1>
+  <p>II</p>
+  <p>III · I · MMXXVI</p>
   <div class="story" id="story"></div>
-
   <button onclick="scrollNext()">Continue ❤️</button>
 </section>
 
-<!-- BEAR SECTION -->
-<section style="background: linear-gradient(180deg,#fdeff2,#fff5f8);">
-  <div class="bears">🐻💃🐻</div>
-  <div class="love-text">Our story continues…</div>
+<!-- SECTION 5: DANCING TEDDIES/GIF EMBEDDED -->
+<section>
+  <div class="bears">
+    <!-- Base64 embedded GIFs for dancing teddies -->
+    <img src="data:image/gif;base64,R0lGODlhEAAQAPYAAAAAA..." class="dancing-teddy" alt="teddy1">
+    <img src="data:image/gif;base64,R0lGODlhEAAQAPYAAAAAA..." class="dancing-teddy" alt="teddy2">
+    <img src="data:image/gif;base64,R0lGODlhEAAQAPYAAAAAA..." class="dancing-teddy" alt="teddy3">
+  </div>
+  <h2>Our story continues…</h2>
 </section>
 
 <script>
@@ -130,12 +151,23 @@ function createHeart() {
   heart.style.left = Math.random() * 100 + "vw";
   heart.style.animationDuration = (3 + Math.random() * 5) + "s";
   document.body.appendChild(heart);
-
   setTimeout(() => heart.remove(), 8000);
 }
 setInterval(createHeart, 300);
 
-/* STORY TEXT */
+/* SCROLL */
+function scrollNext() {
+  window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+}
+
+/* GIFT CLICK */
+function openGift() {
+  document.getElementById("giftText").classList.remove("hidden");
+  document.getElementById("giftBtn").classList.remove("hidden");
+  document.getElementById("bgMusic").play();
+}
+
+/* HANDWRITTEN STORY */
 const storyLines = [
   "Two years have passed, but our love has never reduced, not even a little.",
   "We still love each other the same way we did when we first began.",
@@ -153,41 +185,33 @@ const storyLines = [
   "and that is the most beautiful part of our bond."
 ];
 
-let line = 0;
-let word = 0;
+let lineIndex = 0;
+let wordIndex = 0;
 
 function startStory() {
   const box = document.getElementById("story");
-  box.innerHTML = "";
+  function animateLine() {
+    if (lineIndex >= storyLines.length) return;
 
-  function writeLine() {
-    if (line >= storyLines.length) return;
+    const words = storyLines[lineIndex].split(" ");
+    wordIndex = 0;
 
-    const words = storyLines[line].split(" ");
-    word = 0;
-
-    function writeWord() {
-      if (word < words.length) {
-        box.innerHTML += words[word] + " ";
-        word++;
-        setTimeout(writeWord, 200);
+    function animateWord() {
+      if (wordIndex < words.length) {
+        box.innerHTML += words[wordIndex] + " ";
+        wordIndex++;
+        setTimeout(animateWord, 200);
       } else {
         box.innerHTML += "\n";
-        line++;
-        setTimeout(writeLine, 400);
+        lineIndex++;
+        setTimeout(animateLine, 400);
       }
     }
-    writeWord();
+    animateWord();
   }
-  writeLine();
+  animateLine();
 }
-
 startStory();
-
-/* SCROLL */
-function scrollNext() {
-  window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
-}
 </script>
 
 </body>
