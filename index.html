@@ -71,23 +71,18 @@ button {
 
 /* DANCING TEDDIES */
 /* DANCING TEDDY (static image rocking) */
-.bears {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.dancing-teddy {
-  width: 120px;  /* adjust size if needed */
+.dancing-teddy-video {
+  width: 200px; /* adjust size */
   height: auto;
   margin: 0 10px;
   animation: dance 1s infinite alternate;
 }
+
 @keyframes dance {
   0% { transform: rotate(-10deg) translateY(0); }
   50% { transform: rotate(10deg) translateY(-15px); }
   100% { transform: rotate(-10deg) translateY(0); }
-}translateY(-10px); }
-
+}
 </style>
 </head>
 
@@ -136,14 +131,13 @@ button {
 
 <!-- SECTION 5: DANCING TEDDY GIF -->
 <!-- SECTION 5: DANCING TEDDY -->
+<!-- SECTION 5: DANCING TEDDY VIDEO -->
 <section>
   <div class="bears">
-    <!-- Your static image will rock like dancing teddy -->
-    <img src="teddy.gif" alt="dancing teddy" class="dancing-teddy">
+    <video src="teddy.mp4" autoplay loop muted class="dancing-teddy-video"></video>
   </div>
   <h2>Our story continues…</h2>
 </section>
-
 <script>
 /* LOVE RAIN */
 function createHeart() {
