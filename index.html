@@ -76,8 +76,8 @@ button {
   align-items: center;
 }
 .dancing-teddy {
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   margin: 0 10px;
   animation: dance 1s infinite alternate;
 }
@@ -116,9 +116,9 @@ button {
 <!-- SECTION 3: MEASURING CUTENESS -->
 <section>
   <h2>Measuring Your Cuteness 🧸</h2>
-  <p style="font-size:18px;">Calculating…</p>
-  <div style="font-size:40px;">❤️ ❤️ ❤️ ❤️ ❤️</div>
-  <p style="font-size:20px;">Result: Beyond Measurement 💖</p>
+  <div id="cutenessMeter" style="font-size:50px; margin:20px;">0</div>
+  <button onclick="startMeasuring()">Measure</button>
+  <p id="cutenessWarning" style="color:red; font-size:20px; display:none;">Cuteness Overloaded! 💖</p>
   <button onclick="scrollNext()">Next ➜</button>
 </section>
 
@@ -131,13 +131,10 @@ button {
   <button onclick="scrollNext()">Continue ❤️</button>
 </section>
 
-<!-- SECTION 5: DANCING TEDDIES/GIF EMBEDDED -->
+<!-- SECTION 5: DANCING TEDDY GIF -->
 <section>
   <div class="bears">
-    <!-- Base64 embedded GIFs for dancing teddies -->
-    <img src="data:image/gif;base64,R0lGODlhEAAQAPYAAAAAA..." class="dancing-teddy" alt="teddy1">
-    <img src="data:image/gif;base64,R0lGODlhEAAQAPYAAAAAA..." class="dancing-teddy" alt="teddy2">
-    <img src="data:image/gif;base64,R0lGODlhEAAQAPYAAAAAA..." class="dancing-teddy" alt="teddy3">
+    <img src="teddy.gif" alt="dancing teddy" class="dancing-teddy">
   </div>
   <h2>Our story continues…</h2>
 </section>
@@ -212,6 +209,24 @@ function startStory() {
   animateLine();
 }
 startStory();
+
+/* MEASURING CUTENESS */
+function startMeasuring() {
+  const meter = document.getElementById("cutenessMeter");
+  const warning = document.getElementById("cutenessWarning");
+  meter.innerHTML = 0;
+  warning.style.display = "none";
+
+  let value = 0;
+  const interval = setInterval(() => {
+    value++;
+    meter.innerHTML = value;
+    if (value >= 200) {
+      clearInterval(interval);
+      warning.style.display = "block";
+    }
+  }, 20); // Adjust speed if needed
+}
 </script>
 
 </body>
