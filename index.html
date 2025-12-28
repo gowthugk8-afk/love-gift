@@ -1,131 +1,192 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Anniversary 💖</title>
+<title>Our Story</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: 'Segoe UI', sans-serif;
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #f6f2eb, #fdeff2);
+  font-family: Georgia, serif;
+  overflow-x: hidden;
 }
 
-body{
-  height:100vh;
-  background: linear-gradient(180deg,#ffd1dc,#ffe6f0);
-  overflow:hidden;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+/* LOVE RAIN */
+.heart {
+  position: fixed;
+  top: -10px;
+  color: rgba(255, 0, 80, 0.4);
+  font-size: 18px;
+  animation: fall linear infinite;
 }
 
-/* Floating hearts */
-.heart{
-  position:absolute;
-  bottom:-20px;
-  font-size:20px;
-  color:rgba(255,0,102,0.6);
-  animation: floatUp linear infinite;
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+  }
 }
 
-@keyframes floatUp{
-  0%{transform:translateY(0) scale(1); opacity:1;}
-  100%{transform:translateY(-120vh) scale(1.5); opacity:0;}
+/* SECTIONS */
+section {
+  min-height: 100vh;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Main card */
-.container{
-  position:relative;
-  z-index:10;
-  background:white;
-  width:90%;
-  max-width:350px;
-  padding:30px 20px;
-  border-radius:25px;
-  text-align:center;
-  box-shadow:0 20px 40px rgba(0,0,0,0.15);
+/* TITLE */
+.title {
+  font-size: 36px;
+  letter-spacing: 2px;
 }
 
-/* Heart gift */
-.gift{
-  font-size:90px;
-  animation: beat 1.2s infinite;
-  margin-bottom:10px;
+.line {
+  width: 120px;
+  height: 2px;
+  background: black;
+  margin: 10px 0;
 }
 
-@keyframes beat{
-  0%{transform:scale(1);}
-  50%{transform:scale(1.15);}
-  100%{transform:scale(1);}
+.roman {
+  font-size: 22px;
 }
 
-h1{
-  color:#ff0066;
-  font-size:24px;
-  margin-bottom:10px;
+.date {
+  letter-spacing: 4px;
+  margin-bottom: 30px;
 }
 
-p{
-  color:#555;
-  font-size:15px;
-  margin-bottom:25px;
+/* STORY */
+.story {
+  max-width: 700px;
+  font-family: "Comic Sans MS", "Bradley Hand", cursive;
+  font-size: 18px;
+  line-height: 1.8;
+  white-space: pre-wrap;
 }
 
-/* Button */
-button{
-  background:linear-gradient(45deg,#ff0066,#ff5fa2);
-  border:none;
-  padding:14px 30px;
-  color:white;
-  font-size:16px;
-  border-radius:30px;
-  cursor:pointer;
-  box-shadow:0 8px 20px rgba(255,0,102,0.4);
-  animation: pop 1.5s infinite;
+/* BUTTON */
+button {
+  margin-top: 40px;
+  padding: 14px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  background: black;
+  color: white;
+  cursor: pointer;
 }
 
-@keyframes pop{
-  0%{transform:scale(1);}
-  50%{transform:scale(1.08);}
-  100%{transform:scale(1);}
+/* BEARS */
+.bears {
+  font-size: 80px;
+  animation: dance 1s infinite alternate;
 }
 
-button:hover{
-  opacity:0.9;
+@keyframes dance {
+  from { transform: rotate(-5deg) translateY(0); }
+  to { transform: rotate(5deg) translateY(-10px); }
+}
+
+.love-text {
+  margin-top: 20px;
+  font-size: 22px;
+  letter-spacing: 1px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Floating hearts -->
+<!-- STORY SECTION -->
+<section id="storyPage">
+  <div class="title">Our Story</div>
+  <div class="line"></div>
+  <div class="roman">II</div>
+  <div class="date">III · I · MMXXVI</div>
+
+  <div class="story" id="story"></div>
+
+  <button onclick="scrollNext()">Continue ❤️</button>
+</section>
+
+<!-- BEAR SECTION -->
+<section style="background: linear-gradient(180deg,#fdeff2,#fff5f8);">
+  <div class="bears">🐻💃🐻</div>
+  <div class="love-text">Our story continues…</div>
+</section>
+
 <script>
-for(let i=0;i<30;i++){
-  let heart=document.createElement("div");
-  heart.className="heart";
-  heart.innerHTML="❤";
-  heart.style.left=Math.random()*100+"vw";
-  heart.style.animationDuration=(4+Math.random()*6)+"s";
-  heart.style.fontSize=(15+Math.random()*20)+"px";
+/* LOVE RAIN */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (3 + Math.random() * 5) + "s";
   document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 8000);
 }
-</script>
+setInterval(createHeart, 300);
 
-<div class="container">
-  <div class="gift">💝</div>
-  <h1>Happy Anniversary</h1>
-  <p>Dear Vichuve 💖</p>
-<button id="nextBtn" onclick="window.location.href='cuteness.html'">
-    Open My Heart 💝
-</button>
-</div>
+/* STORY TEXT */
+const storyLines = [
+  "Two years have passed, but our love has never reduced, not even a little.",
+  "We still love each other the same way we did when we first began.",
+  "Small fights and misunderstandings come and go,",
+  "but they are just a part of our story.",
+  "",
+  "When we are together, we become like children.",
+  "We laugh, play, and forget the rest of the world.",
+  "In those moments, we care only about each other.",
+  "",
+  "And when life asks us to be serious,",
+  "we stand strong together.",
+  "When we want joy again,",
+  "we return to that childlike happiness—",
+  "and that is the most beautiful part of our bond."
+];
 
-<script>
-function nextPage(){
-  window.location.href="page2.html"; 
+let line = 0;
+let word = 0;
+
+function startStory() {
+  const box = document.getElementById("story");
+  box.innerHTML = "";
+
+  function writeLine() {
+    if (line >= storyLines.length) return;
+
+    const words = storyLines[line].split(" ");
+    word = 0;
+
+    function writeWord() {
+      if (word < words.length) {
+        box.innerHTML += words[word] + " ";
+        word++;
+        setTimeout(writeWord, 200);
+      } else {
+        box.innerHTML += "\n";
+        line++;
+        setTimeout(writeLine, 400);
+      }
+    }
+    writeWord();
+  }
+  writeLine();
+}
+
+startStory();
+
+/* SCROLL */
+function scrollNext() {
+  window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
 }
 </script>
 
